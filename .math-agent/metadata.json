@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-02-05T22:19:19.217Z",
+  "generator": "scibook-math-agent",
+  "version": "1.0.0",
+  "topic": "How does stochastic gradient descent with momentum converge under heavy-tailed noise conditions when optimizing functions that satisfy the Polyak-Łojasiewicz inequality?",
+  "title": "convergence rates of gradient descent",
+  "tags": [
+    "optimization",
+    "machine-learning",
+    "convergence-analysis",
+    "stochastic-methods",
+    "numerical-analysis"
+  ]
+}

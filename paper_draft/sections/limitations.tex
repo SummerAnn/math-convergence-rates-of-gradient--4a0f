@@ -1,0 +1,41 @@
+\section{Limitations and Future Work}
+
+While our analysis provides theoretical guarantees for gradient descent convergence rates, several important limitations should be acknowledged:
+
+\subsection{Theoretical Assumptions}
+
+The primary limitation stems from the relatively strong assumptions required for our theoretical analysis. Most notably:
+
+\begin{itemize}
+    \item The Polyak-Łojasiewicz (PL) inequality assumption ($\exists \mu > 0$ such that $\frac{1}{2}\|\nabla f(x)\|^2 \geq \mu(f(x) - f^*)$) is crucial for our convergence results but fails to hold for many practical optimization problems, particularly in non-convex settings common in deep learning.
+    
+    \item Our requirement of $L$-Lipschitz continuous gradients ($\|\nabla f(x) - \nabla f(y)\| \leq L\|x-y\|$) excludes important non-smooth optimization problems that frequently arise in practice, such as those involving $\ell_1$ regularization or ReLU activation functions.
+    
+    \item The constant variance assumption $\mathbb{E}\|\nabla f(x) - \nabla F(x)\|^2 \leq \sigma^2$ may be overly simplistic, as noise levels typically vary across different regions of the optimization landscape.
+\end{itemize}
+
+\subsection{Practical Considerations}
+
+The theoretical convergence rates we derive ($\mathcal{O}(1/k)$ for strongly convex functions and $\mathcal{O}(1/\sqrt{k})$ for convex functions) may not reflect actual performance in practical applications where:
+
+\begin{itemize}
+    \item The choice of step size $\eta_k$ requires knowledge of problem-specific parameters ($L$ and $\mu$) that are often unknown or computationally expensive to estimate in practice.
+    
+    \item Our analysis assumes infinite precision arithmetic, whereas practical implementations face numerical precision limitations that may affect convergence behavior.
+\end{itemize}
+
+\subsection{Future Research Directions}
+
+Several promising directions for future work include:
+
+\begin{enumerate}
+    \item Extending the analysis to weaker geometric conditions than the PL inequality, such as the Kurdyka-Łojasiewicz inequality or other relaxed smoothness conditions.
+    
+    \item Developing adaptive step size schemes that maintain theoretical guarantees without requiring knowledge of problem parameters.
+    
+    \item Analyzing convergence behavior under more realistic noise models where $\sigma^2$ varies with the location in parameter space.
+    
+    \item Investigating the impact of finite precision arithmetic on theoretical convergence guarantees.
+\end{enumerate}
+
+These limitations suggest that while our results provide valuable theoretical insights, bridging the gap between theory and practice remains an important challenge in optimization research.

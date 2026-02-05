@@ -1,0 +1,66 @@
+\section{Methodology}
+
+Our analysis of gradient descent convergence rates follows a systematic approach combining classical optimization theory with stochastic analysis. We consider the optimization problem:
+
+\begin{equation}
+\min_{x \in \mathbb{R}^d} f(x)
+\end{equation}
+
+where $f$ is $L$-smooth and satisfies the Polyak-Łojasiewicz (PL) condition with parameter $\mu > 0$.
+
+\subsection{Theoretical Analysis}
+
+The proof strategy consists of four main steps:
+
+First, we establish a descent lemma utilizing the $L$-smoothness property:
+
+\begin{equation}
+f(x_{k+1}) \leq f(x_k) - \frac{\eta}{2}(2-\eta L)\|\nabla f(x_k)\|^2
+\end{equation}
+
+where $\eta$ is the step size satisfying $\eta < \frac{2}{L}$.
+
+For the momentum analysis, we introduce the heavy ball term $\beta(x_k - x_{k-1})$ and develop a telescoping series:
+
+\begin{equation}
+\sum_{k=0}^{T} \beta^k\|\nabla f(x_k)\|^2 = \frac{1}{1-\beta}\mathbb{E}\|\nabla f(x_T)\|^2 + R_T
+\end{equation}
+
+where $R_T$ represents residual terms.
+
+The noise terms are bounded using the heavy-tailed variance assumption:
+
+\begin{equation}
+\mathbb{E}\|\xi_k\|^p \leq M_p, \quad \forall p \in [2,\alpha]
+\end{equation}
+
+where $\xi_k$ represents the noise at iteration $k$ and $\alpha > 2$ is the tail index.
+
+\subsection{Numerical Validation}
+
+We validate our theoretical results through several computational experiments:
+
+1. Synthetic Problems:
+   - Quadratic functions $f(x) = \frac{1}{2}x^TAx - b^Tx$ with condition number $\kappa = 10^3$
+   - Noise following multivariate t-distribution with degrees of freedom $\nu \in \{3,5,7\}$
+
+2. Implementation Details:
+   - Gradient descent iterations: $x_{k+1} = x_k - \eta\nabla f(x_k) + \beta(x_k - x_{k-1}) + \xi_k$
+   - Step sizes: $\eta \in \{10^{-3}, 10^{-2}, 10^{-1}\}$
+   - Momentum parameters: $\beta \in \{0, 0.5, 0.9\}$
+
+3. Performance Metrics:
+   \begin{equation}
+   \epsilon_k = \frac{\|x_k - x^*\|}{\|x_0 - x^*\|}, \quad \rho_k = \frac{\|\nabla f(x_k)\|}{\|\nabla f(x_0)\|}
+   \end{equation}
+
+4. Monte Carlo Estimation:
+   - $N = 1000$ independent runs for each parameter configuration
+   - Empirical convergence rate estimation via linear regression on $\log(\epsilon_k)$
+
+The theoretical bounds are compared with empirical results through:
+\begin{equation}
+\mathbb{E}[f(x_T) - f^*] \leq (1-\mu\eta)^T[f(x_0) - f^*] + \frac{\sigma^2\eta}{2\mu}
+\end{equation}
+
+where $\sigma^2$ represents the noise variance and $f^*$ is the optimal value.

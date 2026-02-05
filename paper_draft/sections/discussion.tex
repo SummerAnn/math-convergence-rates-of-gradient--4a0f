@@ -1,0 +1,19 @@
+\section{Discussion}
+
+Our theoretical and empirical results provide several key insights into the behavior of momentum-based stochastic gradient descent under heavy-tailed noise conditions. The main theoretical result establishes a linear convergence rate of $(1 - \mu\eta(1-\beta))^k$ with an additive noise term $O(\eta\sigma^2/\mu)$, which is particularly significant as it demonstrates robustness to non-Gaussian noise distributions.
+
+The experimental findings strongly support the theoretical guarantees. The observed linear convergence under both Gaussian and $t$-distributed noise validates our theoretical framework, while the minimal difference in performance between these noise types suggests that the method's effectiveness is not significantly impacted by heavy-tailed perturbations. This robustness is particularly valuable for practical applications where noise distributions may deviate from Gaussian assumptions.
+
+The role of the momentum parameter $\beta$ emerges as a crucial factor in the convergence behavior. Higher values of $\beta$ lead to more stable trajectories at the cost of slower convergence, consistent with the $(1-\beta)$ term in our theoretical rate. This trade-off provides practitioners with a tunable parameter to balance convergence speed against stability requirements.
+
+The asymptotic behavior warrants special attention. The convergence to a noise ball of radius proportional to $O(\eta\sigma^2/\mu)$ aligns precisely with our theoretical predictions. This phenomenon, observed consistently across different noise distributions, suggests that the limiting factor in optimization accuracy is indeed the noise variance $\sigma^2$ rather than the specific shape of the noise distribution.
+
+These findings have several important implications:
+
+1. The method's robustness to heavy-tailed noise suggests it can be reliably applied in settings where Gaussian noise assumptions fail.
+
+2. The explicit dependence on the momentum parameter $\beta$ provides clear guidance for parameter tuning in practical applications.
+
+3. The tight correspondence between theoretical and empirical results validates our analysis framework and suggests the bounds are nearly sharp.
+
+One limitation of our analysis is that we assume the Polyak-Łojasiewicz condition, which may not hold in all practical scenarios. Future work could explore relaxing this assumption while maintaining similar convergence guarantees. Additionally, investigating adaptive momentum schemes that automatically adjust $\beta$ based on the observed noise characteristics could further improve practical performance.

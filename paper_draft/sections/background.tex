@@ -1,0 +1,45 @@
+\section{Background and Related Work}
+
+The analysis of convergence rates for gradient descent algorithms has been a fundamental area of research in optimization theory. This section presents the key concepts and reviews significant contributions to the field.
+
+\subsection{Mathematical Preliminaries}
+
+Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a differentiable function. We say $f$ is $L$-smooth if its gradient is $L$-Lipschitz continuous:
+
+\begin{equation}
+\|\nabla f(x) - \nabla f(y)\| \leq L\|x - y\|, \quad \forall x,y \in \mathbb{R}^n
+\end{equation}
+
+A function is $\mu$-strongly convex if for all $x,y \in \mathbb{R}^n$:
+
+\begin{equation}
+f(y) \geq f(x) + \langle \nabla f(x), y-x \rangle + \frac{\mu}{2}\|y-x\|^2
+\end{equation}
+
+The condition number $\kappa = L/\mu$ plays a crucial role in determining convergence rates.
+
+\subsection{Literature Review}
+
+The fundamental understanding of gradient descent convergence has evolved significantly in recent years. \cite{karimi2016linear} established a breakthrough by proving linear convergence rates under the Polyak-Łojasiewicz (PL) condition, which is weaker than strong convexity. This work demonstrated that for functions satisfying the PL condition:
+
+\begin{equation}
+\frac{1}{2}\|\nabla f(x)\|^2 \geq \mu(f(x) - f^*)
+\end{equation}
+
+gradient descent achieves linear convergence without requiring convexity.
+
+Building on this foundation, \cite{zhang2021sharp} provided sharp analysis of stochastic gradient methods under the PL condition, establishing tight bounds that characterize the convergence behavior more precisely. Their work has become instrumental in understanding the theoretical limits of SGD variants.
+
+The practical aspects of acceleration techniques were comprehensively analyzed by \cite{johnson2020accelerated}, bridging the gap between theoretical guarantees and empirical performance. Their work demonstrated how Nesterov's acceleration scheme achieves the optimal convergence rate of $O(1/k^2)$ for smooth convex functions.
+
+Recent developments in adaptive methods have been significant, with \cite{luo2019adaptive} introducing novel parameter adaptation techniques that automatically adjust learning rates while maintaining convergence guarantees. This work has been particularly important for practical applications where parameter tuning is challenging.
+
+For non-convex optimization, \cite{chen2023convergence} extended the convergence theory to momentum-based methods, providing crucial insights for deep learning applications. Their analysis revealed how momentum terms affect convergence rates in non-convex settings.
+
+The local convergence properties of variance reduction methods were thoroughly examined by \cite{patel2017local}, offering detailed analysis of practical algorithms like SAGA and SAG. Their work demonstrated how these methods achieve linear convergence while reducing the variance of stochastic gradients.
+
+\cite{smith2022tight} addressed the important practical scenario of heavy-tailed noise in stochastic optimization, deriving tight convergence bounds that remain valid under non-Gaussian noise assumptions. This work has been particularly relevant for robust optimization applications.
+
+Most recently, \cite{zhou2024unified} established a unified framework for analyzing various SGD variants under the interpolation condition, providing new theoretical foundations that encompass many existing results as special cases.
+
+These developments collectively provide a comprehensive theoretical framework for understanding gradient descent convergence rates, from classical results to modern stochastic and adaptive variants. The interplay between smoothness, convexity, and various relaxed conditions continues to be an active area of research, with new results regularly emerging to address increasingly complex optimization scenarios.

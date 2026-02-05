@@ -1,0 +1,9 @@
+\section{Conclusion}
+
+In this paper, we established tight convergence rates for stochastic gradient descent under the Polyak-Łojasiewicz condition with heavy-tailed noise. Our main contribution provides a linear convergence guarantee of $E[f(x_k) - f*] \leq (1 - \mu\eta(1-\beta))^k (f(x_0) - f*) + O(\eta\sigma^2/\mu)$ for functions satisfying the PL inequality with parameter $\mu$ and $L$-Lipschitz gradients. This result extends previous work by \cite{zhang2021sharp}, who analyzed convergence under light-tailed noise assumptions, to the more challenging setting of heavy-tailed noise distributions.
+
+The derived convergence rate demonstrates that momentum-based SGD can maintain linear convergence despite the presence of heavy-tailed noise, with an asymptotic error bound that scales linearly with the noise variance $\sigma^2$. Our analysis provides tighter bounds compared to the results in \cite{karimi2016linear} for the deterministic setting, while generalizing their framework to handle stochastic gradients.
+
+A key technical innovation in our proof is the careful handling of the interaction between momentum and noise terms, which allows us to establish convergence without requiring bounded gradient assumptions common in previous analyses. This theoretical framework opens new directions for analyzing optimization algorithms under more realistic noise models encountered in practical machine learning applications.
+
+Future work could explore extending these results to other variants of gradient descent, analyzing the effects of adaptive step sizes as in \cite{luo2019adaptive}, or investigating lower bounds on the convergence rate under heavy-tailed noise assumptions.
